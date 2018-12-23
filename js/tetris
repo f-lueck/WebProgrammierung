@@ -64,10 +64,10 @@
     };
     let points = function () {
         let rowCount = 1;
-        outer:for (let y = area.length - 1; y > 0; --y) {
+        for (let y = area.length - 1; y > 0; --y) {
             for (let x = 0; x < area[y].length; ++x) {
                 if (area[y][x] === 0) {
-                    continue outer;
+                    break;
                 }
             }
             const row = area.splice(y, 1)[0].fill(0);

@@ -1,7 +1,1 @@
-function createMatrix(width, height) {
-    const matrix = [];
-    for (let i = 0; i < height; i++) {
-        matrix.push(new Array(width).fill(0))
-    }
-    return matrix;
-}
+console.log("JavaScript initiated.");
