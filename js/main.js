@@ -1,16 +1,152 @@
 console.log("Javascript loaded");
 
+const shapeMatrix = {
+    j: [
+        [
+            0,
+            1,
+            0
+        ],
+        [
+            0,
+            1,
+            0
+        ],
+        [
+            1,
+            1,
+            0
+        ]
+    ],
+    i: [
+        [
+            0,
+            2,
+            0,
+            0
+        ],
+        [
+            0,
+            2,
+            0,
+            0
+        ],
+        [
+            0,
+            2,
+            0,
+            0
+        ],
+        [
+            0,
+            2,
+            0,
+            0
+        ]
+    ],
+    s: [
+        [
+            0,
+            3,
+            3
+        ],
+        [
+            3,
+            3,
+            0
+        ],
+        [
+            0,
+            0,
+            0
+        ]
+    ],
+    l: [
+        [
+            0,
+            4,
+            0
+        ],
+        [
+            0,
+            4,
+            0
+        ],
+        [
+            0,
+            4,
+            4
+        ]
+    ],
+    t: [
+        [
+            0,
+            0,
+            0
+        ],
+        [
+            5,
+            5,
+            5
+        ],
+        [
+            0,
+            5,
+            0
+        ]
+    ],
+    z: [
+        [
+            6,
+            6,
+            0
+        ],
+        [
+            0,
+            6,
+            6
+        ],
+        [
+            0,
+            0,
+            0
+        ]
+    ],
+    o: [
+        [
+            7,
+            7
+        ],
+        [
+            7,
+            7
+        ]
+    ]
+};
+
+const colors = [
+    null,
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxElEQVQ4T2NkYGBg6Jz34T+Ifv3kGIOojBWYBgFkNlgADfTUeTEygjQLC3Iz3Li8G5sanGIauq5gPYwlTdvAtpMLwC6AORlkKjEA2bUYBvDxsYDN+PTpDwOIDaLRAYoByF4AuQCXJmRDCLoAm604DUB3AclhQK4Bb19cYRCW0EGNRrLCgBQXvH3/lQE90aEkJGzpAKYJRIMAzACcXiA2ELEaABIkBoACDwbAXoBlDGI0w9TAMxNIgFCGgjkX5kKYC0DZGQAfwJNr7nKi7AAAAABJRU5ErkJggg==",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxElEQVQ4T2NkYGBgKD1y/D+Ifn7sCIOklQ2YBgFkNlgADSwpK2VkBGkW4udjuLp9GzY1OMW0Pb3AehhjurrBtpMLwC6AORlkKjEA2bUYBvBzcYPN+PjtKwOIDaLRAYoByF4AuQCXJmRDCLoAm604DUB3AclhQK4Br69fYxDV1EKNRrLCgBQXvPv4iQE90aEkJGzpAKYJRIMAzACcXiA2ELEaABIkBoACDwbAXoBlDGI0w9TAMxNIgFCGgjkX5kKYC0DZGQBReJAxJHOTqwAAAABJRU5ErkJggg==",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxElEQVQ4T2NkYGBg6Ly04z+IfnXhJoOYgTqYBgFkNlgADfTG5TMygjQL8/EzXD90CpsanGKadmZgPYzFiyaCbScXgF0AczLIVGIAsmsxDODj4gGb8enbFwYQG0SjAxQDkL0AcgEuTciGEHQBNltxGoDuApLDgFwD3tx+yCCiKo8ajWSFASkuePvpIwN6okNJSNjSAUwTiAYBmAE4vUBsIGI1ACRIDAAFHgyAvQDLGMRohqmBZyaQAKEMBXMuzIUwF4CyMwBvl5MXVeEacQAAAABJRU5ErkJggg==",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxElEQVQ4T2NkYGBg+D8l5T+I3vf0G4OTNBeYBgFkNlgADTi3L2NkBGsWFmfYd+k+NjU4xZz0FMF6GPdWRoFtJxeAXQB3sp4iUeYguxbTAH5hiCEf3zIwgNggGg2gGIDsBZC/cGlCNoOwC7DYitMADBcQEQr4vUCkARdefmUwEOdGjUaywoAkL7x9yYCe6FASEtgF6ACqiQFEgwA01eL2AiVhADKVGAAKPBgAewGWMYjRDFMDz0wgAUIZCuZfmAthLgBlZwBvBonjT09XegAAAABJRU5ErkJggg==",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxElEQVQ4T2NkYGBg2Fvy6T+IvvnlGIM6jxWYBgFkNlgADWTN8GBkBGnmE+FiOP1gDzY1OMVMFVzAehinZewA204uALsA5mSQqcQAZNdiGMAtwAw24+uHvwwgNohGBygGIHsB5AJcmpANIegCbLbiNADdBSSHAbkGPPh0hUGBTwc1GskKA1Jc8OnNNwb0RIeSkLClA5gmEA0CMANweoHYQMRqAEiQGAAKPBgAewGWMYjRDFMDz0wgAUIZCuZcmAthLgBlZwBQ3ZP3OaGtaAAAAABJRU5ErkJggg==",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxElEQVQ4T2NkYGBgeJXf8h9EH/n4ksGGXxxMgwAyGyyABoIWTGZkBGnmExdj2HbrMjY1OMW81HTBehjXJeSCbScXgF0AczLIVGIAsmsxDGAXEQSb8fPNewYQG0SjAxQDkL0AcgEuTciGEHQBNltxGoDuApLDgFwDrnx8w6DDL4IajWSFASku+PTyFQN6okNJSNjSAUwTiAYBmAE4vUBsIGI1ACRIDAAFHgyAvQDLGMRohqmBZyaQAKEMBXMuzIUwF4CyMwBUFZC9raUyoQAAAABJRU5ErkJggg==",
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAw0lEQVQ4T2NkYGBg+Hln0n8QfeLSGwYLPREwDQLIbLAAGrAPamJkBGlm4+RjOHTyHjY1OMXszJXAehgPrqsD204uALsA5mSQqcQAZNdiGsDOAzHj5xcGBhAbRKMBFAOQvQB2AQ5NyGYQdgEWW3EagOECIgIBvxeINODK7bcMOqrCqNFIVhiQ4oVf3z8xoCc6lISELR3ANIFoEIAZgNsLlIQByFRiACjwYADsBVjGIEYzTA08M4EECGUomH9hLoS5AJSdASaukfnTt+kFAAAAAElFTkSuQmCC"
+];
+
 //Get canvas and context for scaling
 const canvas = document.getElementById("tetris");
 const context = canvas.getContext("2d");
 context.scale(40, 32);
 
+
 //Load shapeMatrix json into variable so it can be used afterwards
-let shapeMatrix;
+/*let shapeMatrix;
 loadJSON("./../src/shapeMatrix", function (data) {
     console.log("shapeMatrix.json loaded successfully");
     shapeMatrix = data
-}, (error) => console.error(error));
+}, (error) => console.error(error));*/
 
 
 const gameMatrix = createMatrix(10, 20);
@@ -29,27 +165,27 @@ let currentTime = 0;
 let gameLoop;
 const direction = 1;
 
+document.addEventListener('keydown',function(e){
+    if(e.keyCode===37){
+        moveHorizontally(-direction);
+    }
+    else if(e.keyCode===39){
+        moveHorizontally(+direction);
+    }
+    else if(e.keyCode===40){
+        if(gameIsRunning){
+            dropShape();
+        }
+    }
+    else if(e.keyCode===38){
+        handleRotation(-direction);
+    }
+});
+
+
 resetShape();
 draw();
 endGame();
-
-let input = document.querySelector('input');
-
-input.addEventListener('keydown', handlePlayerInput);
-
-document.getElementById("start_game").onclick = function () {
-    console.log("Game started");
-    gameIsRunning = true;
-    resetShape();
-    gameLoop = setInterval(function () {
-        if (gameIsRunning) {
-            updateGame();
-        }
-        else {
-            endGame();
-        }
-    }, 10);
-};
 
 /**
  * Function endGame
@@ -67,11 +203,11 @@ function endGame() {
 
 /**
  * Function updateGame
- * This function updates the main.js timing of the game, drops and draws
+ * This function updates the main timing of the game, drops and draws
  */
 function updateGame() {
     currentTime++;
-    if (currentTime >= dropIntervall){
+    if (currentTime >= dropIntervall) {
         dropShape();
         currentTime = 0;
     }
@@ -83,6 +219,7 @@ function updateGame() {
  * Draws the actual canvas
  */
 function draw() {
+    console.log("Does its thing");
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.fillStyle = "#000000";
     context.fillRect(0, 0, canvas.width, canvas.height);
@@ -136,8 +273,8 @@ function drawMatrix(matrix, position) {
         row.forEach((set, offsetX) => {
             if (set !== 0) {
                 let imgTag = document.createElement("IMG");
-                imgTag.src = colors[value];
-                context.drawImage(imgTag, x + position.x, y + position.y, 1, 1);
+                imgTag.src = colors[set];
+                context.drawImage(imgTag, offsetX + position.x, offsetY + position.y, 1, 1);
             }
         })
     })
@@ -258,13 +395,14 @@ function isColliding(position, shape) {
 
     for (let i = 0; i < shape.length; ++i) {
         for (let j = 0; j < shape[i].length; ++j) {
-            if ((shape[i][j] !== 0) && (gameMatrix[i + y] !== 0) && (gameMatrix[i + y][j + x] !== 0)) {
+            if (shape[i][j] !== 0 && (gameMatrix[i + y] && gameMatrix[i + y][j + x]) !== 0) {
                 return true;
             }
         }
     }
     return false;
 }
+
 /**
  * Function rotateShape
  * This Function rotates a given shape
@@ -365,9 +503,9 @@ function loadJSON(pathToLocalJson, success, error) {
  * @param key the key that was pressed by the player
  */
 function handlePlayerInput(key) {
-    switch(key){
+    switch (key) {
         case "ArrowDown":
-            if(gameIsRunning){
+            if (gameIsRunning) {
                 dropShape();
             }
             break;
@@ -383,13 +521,16 @@ function handlePlayerInput(key) {
     }
 }
 
-const colors = [
-    null,
-    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxElEQVQ4T2NkYGBg6Jz34T+Ifv3kGIOojBWYBgFkNlgADfTUeTEygjQLC3Iz3Li8G5sanGIauq5gPYwlTdvAtpMLwC6AORlkKjEA2bUYBvDxsYDN+PTpDwOIDaLRAYoByF4AuQCXJmRDCLoAm604DUB3AclhQK4Bb19cYRCW0EGNRrLCgBQXvH3/lQE90aEkJGzpAKYJRIMAzACcXiA2ELEaABIkBoACDwbAXoBlDGI0w9TAMxNIgFCGgjkX5kKYC0DZGQAfwJNr7nKi7AAAAABJRU5ErkJggg==",
-    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxElEQVQ4T2NkYGBgKD1y/D+Ifn7sCIOklQ2YBgFkNlgADSwpK2VkBGkW4udjuLp9GzY1OMW0Pb3AehhjurrBtpMLwC6AORlkKjEA2bUYBvBzcYPN+PjtKwOIDaLRAYoByF4AuQCXJmRDCLoAm604DUB3AclhQK4Br69fYxDV1EKNRrLCgBQXvPv4iQE90aEkJGzpAKYJRIMAzACcXiA2ELEaABIkBoACDwbAXoBlDGI0w9TAMxNIgFCGgjkX5kKYC0DZGQBReJAxJHOTqwAAAABJRU5ErkJggg==",
-    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxElEQVQ4T2NkYGBg6Ly04z+IfnXhJoOYgTqYBgFkNlgADfTG5TMygjQL8/EzXD90CpsanGKadmZgPYzFiyaCbScXgF0AczLIVGIAsmsxDODj4gGb8enbFwYQG0SjAxQDkL0AcgEuTciGEHQBNltxGoDuApLDgFwD3tx+yCCiKo8ajWSFASkuePvpIwN6okNJSNjSAUwTiAYBmAE4vUBsIGI1ACRIDAAFHgyAvQDLGMRohqmBZyaQAKEMBXMuzIUwF4CyMwBvl5MXVeEacQAAAABJRU5ErkJggg==",
-    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxElEQVQ4T2NkYGBg+D8l5T+I3vf0G4OTNBeYBgFkNlgADTi3L2NkBGsWFmfYd+k+NjU4xZz0FMF6GPdWRoFtJxeAXQB3sp4iUeYguxbTAH5hiCEf3zIwgNggGg2gGIDsBZC/cGlCNoOwC7DYitMADBcQEQr4vUCkARdefmUwEOdGjUaywoAkL7x9yYCe6FASEtgF6ACqiQFEgwA01eL2AiVhADKVGAAKPBgAewGWMYjRDFMDz0wgAUIZCuZfmAthLgBlZwBvBonjT09XegAAAABJRU5ErkJggg==",
-    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxElEQVQ4T2NkYGBg2Fvy6T+IvvnlGIM6jxWYBgFkNlgADWTN8GBkBGnmE+FiOP1gDzY1OMVMFVzAehinZewA204uALsA5mSQqcQAZNdiGMAtwAw24+uHvwwgNohGBygGIHsB5AJcmpANIegCbLbiNADdBSSHAbkGPPh0hUGBTwc1GskKA1Jc8OnNNwb0RIeSkLClA5gmEA0CMANweoHYQMRqAEiQGAAKPBgAewGWMYjRDFMDz0wgAUIZCuZcmAthLgBlZwBQ3ZP3OaGtaAAAAABJRU5ErkJggg==",
-    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAxElEQVQ4T2NkYGBgeJXf8h9EH/n4ksGGXxxMgwAyGyyABoIWTGZkBGnmExdj2HbrMjY1OMW81HTBehjXJeSCbScXgF0AczLIVGIAsmsxDGAXEQSb8fPNewYQG0SjAxQDkL0AcgEuTciGEHQBNltxGoDuApLDgFwDrnx8w6DDL4IajWSFASku+PTyFQN6okNJSNjSAUwTiAYBmAE4vUBsIGI1ACRIDAAFHgyAvQDLGMRohqmBZyaQAKEMBXMuzIUwF4CyMwBUFZC9raUyoQAAAABJRU5ErkJggg==",
-    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAw0lEQVQ4T2NkYGBg+Hln0n8QfeLSGwYLPREwDQLIbLAAGrAPamJkBGlm4+RjOHTyHjY1OMXszJXAehgPrqsD204uALsA5mSQqcQAZNdiGsDOAzHj5xcGBhAbRKMBFAOQvQB2AQ5NyGYQdgEWW3EagOECIgIBvxeINODK7bcMOqrCqNFIVhiQ4oVf3z8xoCc6lISELR3ANIFoEIAZgNsLlIQByFRiACjwYADsBVjGIEYzTA08M4EECGUomH9hLoS5AJSdASaukfnTt+kFAAAAAElFTkSuQmCC"
-];
+document.getElementById("start_game").onclick=function(){
+    gameIsRunning=true;
+    resetShape();
+    gameLoop=setInterval(function(){
+        if(gameIsRunning){
+            updateGame();
+        }
+        else{
+            endGame();
+        }
+    },10);
+    this.disabled=true;
+};
