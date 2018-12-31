@@ -1,3 +1,4 @@
+"use strict";
 console.log("Javascript loaded");
 
 const shapeMatrix = {
@@ -140,15 +141,13 @@ const canvas = document.getElementById("tetris");
 const context = canvas.getContext("2d");
 context.scale(40, 32);
 
+//set intervall in which a dropShape should occur
+const dropIntervall = 100;
 
-//Load shapeMatrix json into variable so it can be used afterwards
-/*let shapeMatrix;
-loadJSON("./../src/shapeMatrix", function (data) {
-    console.log("shapeMatrix.json loaded successfully");
-    shapeMatrix = data
-}, (error) => console.error(error));*/
+//initialize current time
+let currentTime = 0;
 
-
+//create GameMatrix, initialize player and other vars
 const gameMatrix = createMatrix(10, 20);
 const player = {
     currentPosition: {
@@ -158,40 +157,58 @@ const player = {
     currentShape: null,
     score: 0
 };
+
+const direction = 1;
+let gameLoop;
 let gameIsRunning = false;
 
-const dropIntervall = 100;
-let currentTime = 0;
-let gameLoop;
-const direction = 1;
 
-document.addEventListener('keydown',function(e){
-    if(e.keyCode===37){
+resetShape();
+checkGameOver();
+draw();
+endGame();
+
+//Load shapeMatrix json into variable so it can be used afterwards
+/*let shapeMatrix;
+loadJSON("./../src/shapeMatrix", function (data) {
+    console.log("shapeMatrix.json loaded successfully");
+    shapeMatrix = data
+}, (error) => console.error(error));*/
+
+//Add eventlistener for keyboard events
+document.addEventListener('keydown', function (e) {
+    if (e.keyCode === 37) {
         moveHorizontally(-direction);
-    }
-    else if(e.keyCode===39){
+    } else if (e.keyCode === 39) {
         moveHorizontally(+direction);
-    }
-    else if(e.keyCode===40){
-        if(gameIsRunning){
+    } else if (e.keyCode === 40) {
+        if (gameIsRunning) {
             dropShape();
         }
-    }
-    else if(e.keyCode===38){
+    } else if (e.keyCode === 38) {
         handleRotation(-direction);
     }
 });
 
-
-resetShape();
-draw();
-endGame();
+document.getElementById("start_game").onclick = function () {
+    gameIsRunning = true;
+    resetShape();
+    gameLoop = setInterval(function () {
+        if (gameIsRunning) {
+            updateGame();
+        } else {
+            endGame();
+        }
+    }, 10);
+    this.disabled = true;
+};
 
 /**
  * Function endGame
  * Ends the game..
  */
 function endGame() {
+    console.log("Ending game.");
     clearInterval(gameLoop);
     context.font = "2px Comic Sans MS";
     context.fillStyle = "#ffffff";
@@ -238,7 +255,7 @@ function handleRotation() {
     let helper = 1;
 
     rotateShape(player.currentShape, direction);
-    while (isColliding(gameMatrix, player.currentShape)) { //as long as it collides, keep on rotating
+    while (isColliding(player.currentPosition, player.currentShape)) { //as long as it collides, keep on rotating
         player.currentPosition.x += helper;
         helper = -(helper + (helper > 0 ? 1 : -1));
 
@@ -257,7 +274,7 @@ function handleRotation() {
  */
 function moveHorizontally(direction) {
     player.currentPosition.x += direction;
-    if (isColliding(gameMatrix, player.currentShape)) {
+    if (isColliding(player.currentPosition, player.currentShape)) {
         player.currentPosition.x -= direction;
     }
 }
@@ -287,7 +304,7 @@ function drawMatrix(matrix, position) {
 function updateScore() {
     let multiplier = 1;
 
-    outerLoop: for (let i = 0; i < gameMatrix[i].length; ++i) {
+    outerLoop: for (let i = gameMatrix.length - 1; i > 0; --i) {
         for (let j = 0; j < gameMatrix[i].length; ++j) {
             if (gameMatrix[i][j] === 0) {
                 continue outerLoop;
@@ -311,19 +328,21 @@ function resetShape() {
     player.currentPosition.x = Math.floor(gameMatrix[0].length / 2) - 1;
 }
 
+
 /**
  * Function dropShape
  * drops the currentShape and updates the score
  */
 function dropShape() {
+    console.log("Dropping the shape!: ", gameMatrix);
     player.currentPosition.y++;
-    if (isColliding(gameMatrix, player.currentShape)) {
+    if (isColliding(player.currentPosition, player.currentShape)) {
         player.currentPosition.y--;
         mergeShapeToGameMatrix(player.currentPosition);
         updateScore();
-        drawScore();
         resetShape();
         checkGameOver();
+        drawScore();
     }
 }
 
@@ -368,6 +387,7 @@ function getRandomShape() {
  * @param position the position of the current shape
  */
 function mergeShapeToGameMatrix(position) {
+    console.log("merging!");
     //Extract x and y positions to use them easier
     const x = position.x;
     const y = position.y;
@@ -377,7 +397,7 @@ function mergeShapeToGameMatrix(position) {
             if (set !== 0) { //if there is a shape at the position => merge it!
                 gameMatrix[i + y][j + x] = set;
             }
-        })
+        });
     });
 }
 
@@ -393,9 +413,12 @@ function isColliding(position, shape) {
     const x = position.x;
     const y = position.y;
 
+    console.log("ex: " + y);
+
     for (let i = 0; i < shape.length; ++i) {
         for (let j = 0; j < shape[i].length; ++j) {
             if (shape[i][j] !== 0 && (gameMatrix[i + y] && gameMatrix[i + y][j + x]) !== 0) {
+                console.log("Colission!");
                 return true;
             }
         }
@@ -520,17 +543,3 @@ function handlePlayerInput(key) {
             break
     }
 }
-
-document.getElementById("start_game").onclick=function(){
-    gameIsRunning=true;
-    resetShape();
-    gameLoop=setInterval(function(){
-        if(gameIsRunning){
-            updateGame();
-        }
-        else{
-            endGame();
-        }
-    },10);
-    this.disabled=true;
-};
