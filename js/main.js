@@ -210,11 +210,11 @@ document.getElementById("start_game").onclick = function () {
 function endGame() {
     console.log("Ending game.");
     clearInterval(gameLoop);
-    context.font = "2px Comic Sans MS";
+    context.font = "Comic Sans MS";
     context.fillStyle = "#ffffff";
     context.textAlign = "center";
     context.textBaseline = "middle";
-    context.fillText("Game Over", (canvas.width / 20) / 2, (canvas.width / 20) / 2);
+    context.fillText("Game Over", (canvas.width / 40) / 2, (canvas.width / 20) / 2);
     document.getElementById("start_game").disabled = false;
 }
 

@@ -1,6 +1,4 @@
-document.write("<link rel=\"stylesheet\" href=\"../Styles/navigation.css\">\n" +
-    "\n" +
-    "    <div class=\"sidebar\">\n" +
+document.write("    <div class=\"sidebar\">\n" +
     "    <a href=\"../HTML_Pages/Home.html\">Home</a>\n" +
     "    <a href=\"../HTML_Pages/Game.html\">Game</a>\n" +
     "    <a href=\"../HTML_Pages/Scores.html\">Scores</a>\n" +

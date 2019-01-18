@@ -1,14 +1,74 @@
-a.button {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
+button {
+    font-family: Tahoma, sans-serif;
+}
 
+a.button {
     text-decoration: none;
     color: initial;
-}
+    background-color: whitesmoke;
+    font-size: 30px;
+    margin: 10px;
+    padding: 30px 30px;
+    }
 
 /* Style the main.js content */
 .main {
     margin-left: 160px; /* Same as the width of the sidenav */
     padding: 0px 10px;
+}
+body {
+    color: white;
+    background-color: black;
+    font-family: Tahoma, sans-serif;
+    font-size: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+.flex-container {
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style the sidebar - fixed full height */
+.sidebar {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 16px;
+}
+
+/* Style sidebar links */
+.sidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: lightgrey;
+    display: block;
+}
+
+/* Style links on mouse-over */
+.sidebar a:hover {
+    color: white;
+}
+
+table {
+    border: 1px white;
+    width: 20%;
+}
+
+td {
+    padding: 8px;
 }
