@@ -1,6 +1,7 @@
 "use strict";
 let song1 = new Audio('../src/Tetris_Original.mp3');
 song1.volume = 0.25;
+song1.loop = true;
 song1.play();
 
 let on_off = 0;

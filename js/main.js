@@ -139,7 +139,7 @@ const colors = [
 //Get canvas and context for scaling
 const canvas = document.getElementById("tetris");
 const context = canvas.getContext("2d");
-context.scale(32, 32);
+context.scale(40, 32);
 
 //set intervall in which a dropShape should occur
 const dropIntervall = 100;
@@ -167,7 +167,6 @@ resetShape();
 checkGameOver();
 draw();
 endGame();
-scoreInLocalStorage();
 
 //Load shapeMatrix json into variable so it can be used afterwards
 /*let shapeMatrix;
@@ -211,7 +210,7 @@ document.getElementById("start_game").onclick = function () {
 function endGame() {
     console.log("Ending game.");
     clearInterval(gameLoop);
-    context.font = "Tahoma";
+    context.font = "1px Times New Roman";
     context.fillStyle = "#ffffff";
     context.textAlign = "center";
     context.textBaseline = "middle";
@@ -233,14 +232,27 @@ function updateGame() {
     draw();
 }
 
+/**
+ * Function scoreInLocalStorage
+ * Saves the players score in Local Storage
+ */
 function scoreInLocalStorage(){
     console.log('LS');
     let scores = [];
-    scores.length = 10;
-    for (let i=0; i<10;i++){
-        scores[i]=i;
+    if (localStorage['scores']) {
+        scores = JSON.parse(localStorage['scores']);
+        if (scores[9]<player.score){
+            scores[9]=player.score;
+            scores.sort(function (a, b) {
+                return b - a
+            });
+        }
+    } else {
+        scores.length = 10;
+        for (let i = 0; i < 10; i++) {
+            scores[i] = i;
+        }
     }
-    scores.sort(function (a,b){return b-a});
     localStorage['scores'] = JSON.stringify(scores);
 }
 
@@ -364,7 +376,7 @@ function dropShape() {
  * Writes the current Score to the Canvas
  */
 function drawScore() {
-    context.font = "Arial";
+    context.font = "1px Times New Roman";
     context.fillStyle = "#ffffff";
     context.textAlign = "left";
     context.textBaseline = "top";
@@ -378,6 +390,7 @@ function drawScore() {
 function checkGameOver() {
     if (isColliding(player.currentPosition, player.currentShape)) { //Is the game lost?
         gameMatrix.forEach(row => row.fill(0));
+        scoreInLocalStorage();
         player.score = 0;
         gameIsRunning = false;
     }
@@ -431,7 +444,7 @@ function isColliding(position, shape) {
     for (let i = 0; i < shape.length; ++i) {
         for (let j = 0; j < shape[i].length; ++j) {
             if (shape[i][j] !== 0 && (gameMatrix[i + y] && gameMatrix[i + y][j + x]) !== 0) {
-                console.log("Colission!");
+                console.log("Collision!");
                 return true;
             }
         }

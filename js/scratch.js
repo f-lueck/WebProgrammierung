@@ -188,19 +188,23 @@
         draw();
     };
     let updateScore=function(){
+        context.scale(0,0);
         context.font="bold 1px Comic Sans MS";
         context.fillStyle="#ffffff";
         context.textAlign="left";
         context.textBaseline="top";
         context.fillText("Score:"+player.score,0.2,0);
+        context.scale(20,20);
     };
     let gameOver=function(){
         clearInterval(gameLoop);
-        context.font="2px Comic Sans MS";
+        context.scale(0,0);
+        context.font="1px Comic Sans MS";
         context.fillStyle="#ffffff";
         context.textAlign="center";
         context.textBaseline="middle";
         context.fillText("Game Over",(canvas.width/20)/2,(canvas.width/20)/2);
+        context.scale(20,20);
         document.getElementById("start_game").disabled=false;
     };
     const colors=[
@@ -255,8 +259,20 @@
             }
             else{
                 gameOver();
+                scoreInLocalStorage();
             }
         },10);
         this.disabled=true;
     };
 })();
+
+function scoreInLocalStorage(){
+    console.log('LS');
+    let scores = [];
+    scores.length = 10;
+    for (let i=0; i<10;i++){
+        scores[i]=i;
+    }
+    scores.sort(function (a,b){return b-a});
+    localStorage['scores'] = JSON.stringify(scores);
+}
