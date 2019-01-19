@@ -82,7 +82,6 @@ function drawMatrix(matrix, position) {
  * Ends the game..
  */
 function endGame() {
-    console.log("Ending game.");
     clearInterval(gameLoop);
     context.font = "1px Times New Roman";
     context.fillStyle = "#ffffff";

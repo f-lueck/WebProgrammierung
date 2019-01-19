@@ -20,10 +20,8 @@ document.addEventListener('keydown', function (e) {
 });
 
 document.getElementById("start_game").onclick = function () {
-    console.log("Disabled: " + this.disabled);
     if (!this.disabled) {
         if (gameIsOver) {
-            console.log("Starting game!");
             init();
             gameIsOver = false;
             this.disabled = true;
@@ -32,7 +30,6 @@ document.getElementById("start_game").onclick = function () {
         }
         gameIsRunning = true;
         gameLoop = setInterval(function () {
-            console.log("Loop!");
             if (gameIsRunning) {
                 updateGame();
             } else {
