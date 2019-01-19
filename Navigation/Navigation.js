@@ -1,3 +1,5 @@
+"use strict";
+console.log('Navbar geladen');
 document.write("    <div class=\"sidebar\">\n" +
     "    <a href=\"../HTML_Pages/Home.html\">Home</a>\n" +
     "    <a href=\"../HTML_Pages/Game.html\">Game</a>\n" +

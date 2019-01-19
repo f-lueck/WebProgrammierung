@@ -139,7 +139,7 @@ const colors = [
 //Get canvas and context for scaling
 const canvas = document.getElementById("tetris");
 const context = canvas.getContext("2d");
-context.scale(40, 32);
+context.scale(32, 32);
 
 //set intervall in which a dropShape should occur
 const dropIntervall = 100;
@@ -167,6 +167,7 @@ resetShape();
 checkGameOver();
 draw();
 endGame();
+scoreInLocalStorage();
 
 //Load shapeMatrix json into variable so it can be used afterwards
 /*let shapeMatrix;
@@ -210,12 +211,13 @@ document.getElementById("start_game").onclick = function () {
 function endGame() {
     console.log("Ending game.");
     clearInterval(gameLoop);
-    context.font = "Comic Sans MS";
+    context.font = "Tahoma";
     context.fillStyle = "#ffffff";
     context.textAlign = "center";
     context.textBaseline = "middle";
     context.fillText("Game Over", (canvas.width / 40) / 2, (canvas.width / 20) / 2);
     document.getElementById("start_game").disabled = false;
+
 }
 
 /**
@@ -229,6 +231,17 @@ function updateGame() {
         currentTime = 0;
     }
     draw();
+}
+
+function scoreInLocalStorage(){
+    console.log('LS');
+    let scores = [];
+    scores.length = 10;
+    for (let i=0; i<10;i++){
+        scores[i]=i;
+    }
+    scores.sort(function (a,b){return b-a});
+    localStorage['scores'] = JSON.stringify(scores);
 }
 
 /**
@@ -351,7 +364,7 @@ function dropShape() {
  * Writes the current Score to the Canvas
  */
 function drawScore() {
-    context.font = "bold 1px Comic Sans MS";
+    context.font = "Arial";
     context.fillStyle = "#ffffff";
     context.textAlign = "left";
     context.textBaseline = "top";
