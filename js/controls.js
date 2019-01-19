@@ -20,19 +20,29 @@ document.addEventListener('keydown', function (e) {
 });
 
 document.getElementById("start_game").onclick = function () {
+    console.log("Disabled: " + this.disabled);
     if (!this.disabled) {
-        init();
-        this.disabled = true;
+        if (gameIsOver) {
+            console.log("Starting game!");
+            init();
+            gameIsOver = false;
+            this.disabled = true;
+            gameIsRunning = true;
+            resetShape();
+        }
         gameIsRunning = true;
-        resetShape();
         gameLoop = setInterval(function () {
+            console.log("Loop!");
             if (gameIsRunning) {
                 updateGame();
             } else {
                 document.getElementById("start_game").disabled = false;
-                endGame();
+                if (gameIsOver) {
+                    endGame();
+                }
             }
         }, 10);
+
     }
 };
 

@@ -29,6 +29,7 @@ const player = {
 
 const direction = 1;
 let gameLoop;
+let gameIsOver = true;
 let gameIsRunning = false;
 
 /**

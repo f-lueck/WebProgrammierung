@@ -21,8 +21,16 @@ function checkGameOver() {
         gameMatrix.forEach(row => row.fill(0));
         scoreInLocalStorage();
         player.score = 0;
+        gameIsOver = true;
         gameIsRunning = false;
     }
+}
+
+function pauseGame(){
+    document.getElementById("start_game").disabled = false;
+    controlSound();
+    clearInterval(gameLoop);
+    gameIsRunning = false;
 }
 
 /**
