@@ -1,7 +1,13 @@
+/**
+Set font for all buttons
+ */
 button {
     font-family: Tahoma, sans-serif;
 }
 
+/**
+Child-class from button, all buttons except sound
+ */
 a.button {
     text-decoration: none;
     color: initial;
@@ -11,6 +17,9 @@ a.button {
     padding: 30px 30px;
 }
 
+/**
+Child-class for sound-button
+ */
 b.button {
     text-decoration: none;
     background-color: black;
@@ -19,12 +28,17 @@ b.button {
     cursor: pointer;
 }
 
-/* Style the main.js content */
+/**
+Show field for HTML-documents
+ */
 .main {
     margin-left: 160px; /* Same as the width of the sidenav */
     padding: 0 10px;
 }
 
+/**
+Global settings for fonts
+ */
 body {
     color: white;
     background-color: black;
@@ -32,14 +46,23 @@ body {
     font-size: 20px;
 }
 
+/**
+Alignment for h1
+ */
 h1 {
     text-align: center;
 }
 
+/**
+Alignment for h2
+ */
 h2 {
     text-align: center;
 }
 
+/**
+Container for Flex-Box
+ */
 .flex-container {
     height: 300px;
     display: flex;
@@ -47,7 +70,9 @@ h2 {
     align-items: center;
 }
 
-/* Style the sidebar - fixed full height */
+/**
+Settings for sidebar - fixed left with full height
+ */
 .sidebar {
     height: 100%;
     width: 160px;
@@ -60,7 +85,9 @@ h2 {
     padding-top: 16px;
 }
 
-/* Style sidebar links */
+/**
+Styles for links within the sidebar
+ */
 .sidebar a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
@@ -69,39 +96,62 @@ h2 {
     display: block;
 }
 
-/* Style links on mouse-over */
+/**
+Style for hover on sidebar-links
+ */
 .sidebar a:hover {
     color: white;
 }
 
+/**
+Style for table
+ */
 table {
     border: 1px white;
 }
 
+/**
+Alignment for special table
+ */
 table.center {
     width: 50%;
     margin-left: 00%;
     margin-right: 40%;
 }
 
+/**
+Styles for table entries
+ */
 td, th {
     border: 1px solid white;
     padding: 8px;
 }
 
+/**
+Center alignment
+ */
 .center-div {
     margin-left: 40%;
     margin-right: 40%;
 }
 
+/**
+Right Alignment
+ */
 .right-div {
     float: right;
 }
 
+/**
+Alignment for canvas
+ */
 .center-canvas {
     margin-left: 36%;
 }
 
+/**
+Alignment for buttons under the canvas
+ */
 .center-button-start {
     margin-left: 36%;
 }

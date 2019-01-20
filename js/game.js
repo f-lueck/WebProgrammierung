@@ -115,11 +115,11 @@ class Game {
      */
     static endGame() {
         clearInterval(gameLoop);
-        context.font = "1px Times New Roman";
+        context.font = "2px Times New Roman";
         context.fillStyle = "#ffffff";
         context.textAlign = "center";
         context.textBaseline = "middle";
-        context.fillText("Game Over", (canvas.width / 40) / 2, (canvas.width / 20) / 2);
+        context.fillText("Game Over", (canvas.width / 48) / 2, (canvas.width / 30) / 2);
         document.getElementById("start_game").disabled = false;
 
     }
