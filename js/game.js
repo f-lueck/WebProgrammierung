@@ -34,7 +34,7 @@ function pauseGame(){
 
 /**
  * Function resetShape
- * Get called when the last shape is used, generates a random new shape and resets the position
+ * Get called when the last shape is used, generates a random new shape for the player and resets the position
  */
 function resetShape() {
     player.currentShape = getRandomShape();
@@ -106,7 +106,7 @@ function updateGame() {
 
 /**
  * Function higherDifficulty
- * Decreases the variable dropIntervall, if the score is higher than a certain amount
+ * Decreases the variable dropInterval, if the score is higher than a certain amount
  */
 function higherDifficulty() {
     if (player.score >= scoreBorder){

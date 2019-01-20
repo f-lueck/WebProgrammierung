@@ -1,4 +1,5 @@
 "use strict";
+
 if (typeof (Storage)!=='undefined') {
     if (localStorage['scores']) {
         let scores = JSON.parse(localStorage['scores']);

@@ -1,10 +1,17 @@
 "use strict";
-let song1 = new Audio('../src/Tetris_Original.mp3');
-song1.volume = 0.25;
-song1.loop = true;
-song1.play();
 
-let on_off = 1;
+const song = new Audio('../src/Tetris_Original.mp3');
+song.volume = 0.25;
+song.loop = true;
+let music_playing = false;
+
+song.play()
+    .then(() => {
+        console.log("Started playing the music.");
+        music_playing = true;
+    })
+    .catch((e) => console.error(`Failed playing the music: ${e.message}`));
+
 
 /**
  * Function controlSound
@@ -12,14 +19,15 @@ let on_off = 1;
  */
 function controlSound() {
     console.log("Audio Toggle");
-    switch (on_off) {
-        case 0:
-            song1.play();
-            on_off = 1;
-            break;
-        case 1:
-            song1.pause();
-            on_off = 0;
-            break;
+    if (music_playing) {
+        song.pause();
+        music_playing = false;
+    } else {
+        song.play()
+            .then(() => {
+                console.log("Started playing the music.");
+                music_playing = true;
+            })
+            .catch((e) => console.error(`Failed playing the music: ${e.message}`));
     }
 }

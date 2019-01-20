@@ -26,7 +26,7 @@ function draw() {
 
 /**
  * Function handleRotation
- * Handles the given rotation by the actualy human player
+ * Handles the given rotation by the actual human player
  */
 function handleRotation() {
     let direction = -1;

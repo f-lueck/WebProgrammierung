@@ -1,6 +1,6 @@
 "use strict";
-console.log("Loading controls.");
 
+console.log("Loading controls.");
 //Add eventlistener for keyboard events
 document.addEventListener('keydown', function (e) {
     switch (e.key) {
@@ -42,5 +42,4 @@ document.getElementById("start_game").onclick = function () {
 
     }
 };
-
 console.log("Controls loaded.");

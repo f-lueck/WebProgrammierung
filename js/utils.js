@@ -1,4 +1,5 @@
 "use strict";
+
 /**
  * Function loadJson
  * This function enables you to load a locally stored JSON file

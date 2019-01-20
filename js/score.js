@@ -23,8 +23,6 @@ function scoreInLocalStorage() {
     localStorage['scores'] = JSON.stringify(scores);
 }
 
-
-
 /**
  * Function updateScore
  * updates the players score corresponding to the lines completed
@@ -46,8 +44,6 @@ function updateScore() {
     }
     higherDifficulty();
 }
-
-
 
 /**
  * Function drawScore
