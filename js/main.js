@@ -39,6 +39,8 @@ const gameMatrix = Matrix.createMatrix(10, 20);
  * Does all needed initializations for the game to start running.
  */
 function init() {
+    dropIntervall = 100;
+    scoreBorder = 500;
     player.score = 0;
     Game.resetShape();
     Game.checkGameOver();
