@@ -103,3 +103,14 @@ function updateGame() {
     }
     draw();
 }
+
+/**
+ * Function higherDifficulty
+ * Decreases the variable dropIntervall, if the score is higher than a certain amount
+ */
+function higherDifficulty() {
+    if (player.score >= scoreBorder){
+        dropIntervall *= 0.8;
+        scoreBorder *= 2;
+    }
+}

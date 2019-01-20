@@ -11,10 +11,13 @@ const context = canvas.getContext("2d");
 context.scale(40, 32);
 
 //set intervall in which a dropShape should occur
-const dropIntervall = 100;
+let dropIntervall = 100;
 
 //initialize current time
 let currentTime = 0;
+
+//initialize score border for higher difficulty
+let scoreBorder = 500;
 
 //create GameMatrix, initialize player and other vars
 const gameMatrix = createMatrix(10, 20);

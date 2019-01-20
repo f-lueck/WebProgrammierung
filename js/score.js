@@ -44,6 +44,7 @@ function updateScore() {
         player.score += multiplier * 100;
         multiplier *= 2;
     }
+    higherDifficulty();
 }
 
 
