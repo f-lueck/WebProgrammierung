@@ -8,7 +8,7 @@ initGameData();
 //Get canvas and context for scaling
 const canvas = document.getElementById("tetris");
 const context = canvas.getContext("2d");
-context.scale(40, 32);
+context.scale(48, 32);
 
 //set intervall in which a dropShape should occur
 let dropIntervall = 100;
