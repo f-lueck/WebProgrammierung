@@ -11,10 +11,18 @@ a.button {
     padding: 30px 30px;
     }
 
+b.button {
+    text-decoration: none;
+    background-color: black;
+    color: initial;
+    font-size: 0;
+    cursor: pointer;
+}
+
 /* Style the main.js content */
 .main {
     margin-left: 160px; /* Same as the width of the sidenav */
-    padding: 0px 10px;
+    padding: 0 10px;
 }
 body {
     color: white;
@@ -66,9 +74,32 @@ h2 {
 
 table {
     border: 1px white;
+}
+
+table.center {
     width: 20%;
+    margin-left: 40%;
+    margin-right: 40%;
 }
 
 td, th {
+    border: 1px solid white;
     padding: 8px;
+}
+
+.center-div {
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+.right-div {
+    float: right;
+}
+
+.center-canvas{
+    margin-left: 36%;
+}
+
+.center-button-start{
+    margin-left: 36%;
 }
