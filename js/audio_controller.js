@@ -6,6 +6,10 @@ song1.play();
 
 let on_off = 0;
 
+/**
+ * Function controlSound
+ * Toggles whether the sound is playing or not
+ */
 function controlSound() {
     switch (on_off) {
         case 0:

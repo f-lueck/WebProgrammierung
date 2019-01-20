@@ -28,7 +28,6 @@ function checkGameOver() {
 
 function pauseGame(){
     document.getElementById("start_game").disabled = false;
-    controlSound();
     clearInterval(gameLoop);
     gameIsRunning = false;
 }
