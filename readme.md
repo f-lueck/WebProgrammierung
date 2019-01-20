@@ -19,6 +19,7 @@ utils.js | Loading jsons from filesystem
 Asset-Name | Source
 --- | ---
 speaker_icon_on.jpg | http://www.ssgaudio.com/images/Speaker-icon.jpg
+speaker_icon_off.jpg | Based on speaker_icon_on.jpg, added diagonal line
 Tetris_Original.mp3 | https://www.youtube.com/watch?v=NmCCQxVBfyM
 Everything else | Created by ourselves
 
