@@ -3,15 +3,15 @@
 class AudioController {
 
     constructor() {
-        const song = new Audio('../src/music/Tetris_Original.mp3');
-        song.volume = 0.1;
-        song.loop = true;
-        let music_playing;
+        this.song = new Audio('../src/music/Tetris_Original.mp3');
+        this.song.volume = 0.1;
+        this.song.loop = true;
+        this.music_playing = false;
 
-        song.play()
+        this.song.play()
             .then(() => {
                 console.log("Started playing the music.");
-                music_playing = true;
+                this.music_playing = true;
             })
             .catch((e) => console.error(`Failed playing the music: ${e.message}`));
     }
@@ -22,16 +22,16 @@ class AudioController {
      */
     controlSound() {
         console.log("Audio Toggle");
-        if (music_playing) {
-            song.pause();
+        if (this.music_playing) {
+            this.song.pause();
             document.getElementById("speaker").src = "../src/speaker_icons/speaker_icon_off.jpg";
-            music_playing = false;
+            this.music_playing = false;
         } else {
-            song.play()
+            this.song.play()
                 .then(() => {
                     console.log("Started playing the music.");
                     document.getElementById("speaker").src = "../src/speaker_icons/speaker_icon_on.jpg";
-                    music_playing = true;
+                    this.music_playing = true;
                 })
                 .catch((e) => console.error(`Failed playing the music: ${e.message}`));
         }
