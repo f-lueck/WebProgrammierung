@@ -17,7 +17,7 @@ function scoreInLocalStorage() {
     } else {
         scores.length = 10;
         for (let i = 0; i < 10; i++) {
-            scores[i] = i;
+            scores[i] = 0;
         }
     }
     localStorage['scores'] = JSON.stringify(scores);
