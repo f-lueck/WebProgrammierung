@@ -1,10 +1,10 @@
 [
     null,
-    "../src/j.jpg",
-    "../src/i.jpg",
-    "../src/s.jpg",
-    "../src/l.jpg",
-    "../src/t.jpg",
-    "../src/z.jpg",
-    "../src/o.jpg"
+    "../src/shapes/j.jpg",
+    "../src/shapes/i.jpg",
+    "../src/shapes/s.jpg",
+    "../src/shapes/l.jpg",
+    "../src/shapes/t.jpg",
+    "../src/shapes/z.jpg",
+    "../src/shapes/o.jpg"
 ]
