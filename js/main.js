@@ -3,7 +3,6 @@
 //Initialize gamedata for initial usage
 let shapeMatrix;
 let colors;
-initGameData();
 
 //Get canvas and context for scaling
 const canvas = document.getElementById("tetris");
@@ -27,6 +26,9 @@ let direction;
 let gameIsOver;
 let gameIsRunning;
 
+initGameData();
+
+
 /**
  * Function init
  * Does all needed initializations for the game to start running.
@@ -44,10 +46,13 @@ function init() {
  */
 function initGameData() {
     //Load shapes
+    if(!shapeMatrix)
     loadJson("../src/data/shapeMatrix").then(json => shapeMatrix = json);
     //Load images
+    if(!colors)
     loadJson("../src/data/colors").then(json => colors = json);
     //Load init game data
+    if(!dropIntervall)
     loadJson("../src/data/initData").then((json) => {
         //Initialize data
         dropIntervall = json.dropInterval;
