@@ -39,7 +39,7 @@ let gameIsRunning = false;
  * Function init
  * Does all needed initializations for the game to start running.
  */
-function init(){
+function init() {
     resetShape();
     checkGameOver();
     draw();
@@ -50,7 +50,7 @@ function init(){
  * Function initGameData
  * initializes the gameData from Jsons in src dir
  */
-function initGameData(){
+function initGameData() {
     //Load shapes
     loadJson("../src/shapeMatrix").then(json => shapeMatrix = json);
     //Load images

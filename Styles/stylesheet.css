@@ -9,7 +9,7 @@ a.button {
     font-size: 30px;
     margin: 10px;
     padding: 30px 30px;
-    }
+}
 
 b.button {
     text-decoration: none;
@@ -24,6 +24,7 @@ b.button {
     margin-left: 160px; /* Same as the width of the sidenav */
     padding: 0 10px;
 }
+
 body {
     color: white;
     background-color: black;
@@ -38,6 +39,7 @@ h1 {
 h2 {
     text-align: center;
 }
+
 .flex-container {
     height: 300px;
     display: flex;
@@ -96,10 +98,10 @@ td, th {
     float: right;
 }
 
-.center-canvas{
+.center-canvas {
     margin-left: 36%;
 }
 
-.center-button-start{
+.center-button-start {
     margin-left: 36%;
 }

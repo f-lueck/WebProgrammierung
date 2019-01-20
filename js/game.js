@@ -26,7 +26,7 @@ function checkGameOver() {
     }
 }
 
-function pauseGame(){
+function pauseGame() {
     document.getElementById("start_game").disabled = false;
     clearInterval(gameLoop);
     gameIsRunning = false;
@@ -109,7 +109,7 @@ function updateGame() {
  * Decreases the variable dropInterval, if the score is higher than a certain amount
  */
 function higherDifficulty() {
-    if (player.score >= scoreBorder){
+    if (player.score >= scoreBorder) {
         dropIntervall *= 0.8;
         scoreBorder += 500;
     }
