@@ -30,7 +30,6 @@ initGameData();
 let actualGame = new Game();
 let audioControl = new AudioController();
 let actualMatrix = new Matrix();
-let actualScore = new Score();
 
 const gameMatrix = Matrix.createMatrix(10, 20);
 
