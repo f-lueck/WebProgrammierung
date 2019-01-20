@@ -52,7 +52,7 @@ function init() {
  */
 function initGameData() {
     //Load shapes
-    loadJson("../src/shapeMatrix").then(json => shapeMatrix = json);
+    loadJson("../src/data/shapeMatrix").then(json => shapeMatrix = json);
     //Load images
-    loadJson("../src/colors").then(json => colors = json);
+    loadJson("../src/data/colors").then(json => colors = json);
 }
