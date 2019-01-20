@@ -15,7 +15,7 @@ song.play()
 
 /**
  * Function controlSound
- * Toggles whether the sound is playing or not
+ * Toggles whether the sound is playing or not, loads different sound icons
  */
 function controlSound() {
     console.log("Audio Toggle");
