@@ -9,7 +9,6 @@ if (typeof (Storage) !== 'undefined') {
         for (let i = 0; i < 10; i++) {
             document.write('<tr><td width="20%">' + (i + 1) + '.</td>');
             document.write('<td width="80%" align="right">' + scores[i] + '</td></tr>');
-
         }
 
         document.write('</table></div>');

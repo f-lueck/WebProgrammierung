@@ -2,7 +2,7 @@
 
 console.log("Loading controls.");
 //Add eventlistener for keyboard events
-document.addEventListener('keydown', function (e) {
+document.addEventListener('keydown', (e) => {
     switch (e.key) {
         case "ArrowLeft":
             moveHorizontally(-direction);
@@ -19,7 +19,7 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
-document.getElementById("start_game").onclick = function () {
+document.getElementById("start_game").onclick = () => {
     if (!this.disabled) {
         if (gameIsOver) {
             init();
