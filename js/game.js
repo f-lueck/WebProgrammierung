@@ -111,6 +111,6 @@ function updateGame() {
 function higherDifficulty() {
     if (player.score >= scoreBorder){
         dropIntervall *= 0.8;
-        scoreBorder *= 2;
+        scoreBorder += 500;
     }
 }
