@@ -1,4 +1,4 @@
-# Tetris
+#Tetris
 
 ##Usage
 Start the game directly by loading Game.html or by using the navigation on the left side of the html page.
