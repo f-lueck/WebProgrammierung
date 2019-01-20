@@ -19,7 +19,6 @@ let currentTime;
 let scoreBorder;
 
 //create GameMatrix, initialize player and other vars
-const gameMatrix = createMatrix(10, 20);
 let player = {};
 let gameLoop;
 let direction;
@@ -28,16 +27,24 @@ let gameIsRunning;
 
 initGameData();
 
+let actualGame = new Game();
+let audioControl = new AudioController();
+let actualMatrix = new Matrix();
+let actualScore = new Score();
+
+const gameMatrix = Matrix.createMatrix(10, 20);
+
 
 /**
  * Function init
  * Does all needed initializations for the game to start running.
  */
 function init() {
-    resetShape();
-    checkGameOver();
-    draw();
-    endGame();
+    player.score = 0;
+    Game.resetShape();
+    Game.checkGameOver();
+    Matrix.draw();
+    Game.endGame();
 }
 
 /**
@@ -47,15 +54,15 @@ function init() {
 function initGameData() {
     //Load shapes
     if (!shapeMatrix) {
-        loadJson("../src/data/shapeMatrix").then(json => shapeMatrix = json);
+        Utility.loadJson("../src/data/shapeMatrix").then(json => shapeMatrix = json);
     }
     //Load images
     if (!colors) {
-        loadJson("../src/data/colors").then(json => colors = json);
+        Utility.loadJson("../src/data/colors").then(json => colors = json);
     }
     //Load init game data
     if (!dropIntervall) {
-        loadJson("../src/data/initData").then((json) => {
+        Utility.loadJson("../src/data/initData").then((json) => {
             //Initialize data
             dropIntervall = json.dropInterval;
             currentTime = json.currentTime;
