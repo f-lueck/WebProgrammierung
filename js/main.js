@@ -46,21 +46,24 @@ function init() {
  */
 function initGameData() {
     //Load shapes
-    if(!shapeMatrix)
-    loadJson("../src/data/shapeMatrix").then(json => shapeMatrix = json);
+    if (!shapeMatrix) {
+        loadJson("../src/data/shapeMatrix").then(json => shapeMatrix = json);
+    }
     //Load images
-    if(!colors)
-    loadJson("../src/data/colors").then(json => colors = json);
+    if (!colors) {
+        loadJson("../src/data/colors").then(json => colors = json);
+    }
     //Load init game data
-    if(!dropIntervall)
-    loadJson("../src/data/initData").then((json) => {
-        //Initialize data
-        dropIntervall = json.dropInterval;
-        currentTime = json.currentTime;
-        scoreBorder = json.scoreBorder;
-        player = json.player;
-        direction = json.direction;
-        gameIsOver = json.gameIsOver;
-        gameIsRunning = json.gameIsRunning;
-    });
+    if (!dropIntervall) {
+        loadJson("../src/data/initData").then((json) => {
+            //Initialize data
+            dropIntervall = json.dropInterval;
+            currentTime = json.currentTime;
+            scoreBorder = json.scoreBorder;
+            player = json.player;
+            direction = json.direction;
+            gameIsOver = json.gameIsOver;
+            gameIsRunning = json.gameIsRunning;
+        });
+    }
 }
