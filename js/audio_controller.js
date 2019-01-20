@@ -4,13 +4,14 @@ song1.volume = 0.25;
 song1.loop = true;
 song1.play();
 
-let on_off = 0;
+let on_off = 1;
 
 /**
  * Function controlSound
  * Toggles whether the sound is playing or not
  */
 function controlSound() {
+    console.log("Audio Toggle");
     switch (on_off) {
         case 0:
             song1.play();
