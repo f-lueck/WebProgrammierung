@@ -1,0 +1,16 @@
+{
+    "dropInterval": 100,
+    "currentTime": 0,
+    "scoreBorder": 500,
+    "player": {
+        "currentPosition": {
+                "x": 0,
+                "y": 0
+            },
+            "currentShape": null,
+            "score": 0
+    },
+    "direction": 1,
+    "gameIsOver": true,
+    "gameIsRunning": false
+}

@@ -11,29 +11,21 @@ const context = canvas.getContext("2d");
 context.scale(48, 32);
 
 //set intervall in which a dropShape should occur
-let dropIntervall = 100;
+let dropIntervall;
 
 //initialize current time
-let currentTime = 0;
+let currentTime;
 
 //initialize score border for higher difficulty
-let scoreBorder = 500;
+let scoreBorder;
 
 //create GameMatrix, initialize player and other vars
 const gameMatrix = createMatrix(10, 20);
-const player = {
-    currentPosition: {
-        x: 0,
-        y: 0
-    },
-    currentShape: null,
-    score: 0
-};
-
-const direction = 1;
+let player = {};
 let gameLoop;
-let gameIsOver = true;
-let gameIsRunning = false;
+let direction;
+let gameIsOver;
+let gameIsRunning;
 
 /**
  * Function init
@@ -55,4 +47,15 @@ function initGameData() {
     loadJson("../src/data/shapeMatrix").then(json => shapeMatrix = json);
     //Load images
     loadJson("../src/data/colors").then(json => colors = json);
+    //Load init game data
+    loadJson("../src/data/initData").then((json) => {
+        //Initialize data
+        dropIntervall = json.dropInterval;
+        currentTime = json.currentTime;
+        scoreBorder = json.scoreBorder;
+        player = json.player;
+        direction = json.direction;
+        gameIsOver = json.gameIsOver;
+        gameIsRunning = json.gameIsRunning;
+    });
 }
